@@ -1,0 +1,41 @@
+$color: #ccc;
+
+html{
+  background: #F6F7EF;
+}
+
+body{
+  font-size: 15px;
+  width: 900px;
+  margin: 0 auto;
+  background: #fff;
+}
+
+h1{
+  font-size: 20px;
+}
+
+.box{
+  color: $color;
+  overflow: hidden;
+
+  div{
+    float: left;
+    text-align: center;
+    width: 30%;
+    height: 230px;
+    line-height: 230px;
+    margin-left: 22px;
+    background: #000;
+  }
+
+  p{
+    margin: 10px;
+
+    a{
+      display: block;
+      width: 120px;
+      margin: 0 auto;
+    }
+  }
+}

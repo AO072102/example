@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gulpのサンプル</title>
+  <link rel="stylesheet" href="lib.css">
+  <link rel="stylesheet" href="app.css">
+  <script type="text/javascript" src="lib.js"></script>
+  <script>
+  $(function() {
+    // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+    function AppViewModel() {
+      this.firstName = "Bert";
+      this.lastName = "Bertington";
+    }
+
+    // Activates knockout.js
+    ko.applyBindings(new AppViewModel());
+  });
+  </script>
+</head>
+<body>
+  <h1>Gulpのサンプル</h1>
+  <div class="box">
+    <div>ボックス1</div>
+    <div>ボックス2</div>
+    <div>ボックス3</div>
+  </div>
+  <div class="knockout">
+    <!-- This is a *view* - HTML markup that defines the appearance of your UI -->
+
+    <p>First name: <strong data-bind="text: firstName"></strong></p>
+    <p>Last name: <strong data-bind="text: lastName"></strong></p>
+  </div>
+</body>
+</html>
