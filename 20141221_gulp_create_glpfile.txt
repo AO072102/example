@@ -1,0 +1,50 @@
+node.js install
+npm install
+git init
+
+create .gitignore
+/build/
+/bower_components/
+/node_modules/
+
+npm init
+ or
+create package.json
+{
+  "name": "example",
+  "description": "an example with npm, gulp and bower",
+  "dependencies": {},
+  "devDependencies": {}
+}
+
+npm install -g bower
+
+bower init
+bower install knockout --save
+bower install bootstrap --save
+
+npm install -g gulp
+npm install gulp
+
+npm install coffee-script --save-dev
+
+npm install -g typescript
+
+npm install bower --save-dev
+npm install del --save-dev
+npm install gulp-coffee --save-dev
+npm install gulp-concat --save-dev
+(npm install gulp-less --save-dev)
+(npm install gulp-ng-annotate --save-dev)
+npm install gulp-nodemon --save-dev
+npm install gulp-uglify --save-dev
+
+gulp
+
+gulp watch
+
+create apimock.coffee
+
+npm install express --save-dev
+
+gulp server
