@@ -8,7 +8,8 @@ sources =
   bower:  'bower.json'
 #  coffee: 'app/**/*.coffee'
 #  less:   'app/**/*.less'
-  ts:    'app/**/*.ts'
+  ts:     'app/**/*.ts'
+  sass:   'app/**/*.scss'
   static: 'public/**/*'
 
 libs =
@@ -27,6 +28,7 @@ coffee      = require 'gulp-coffee'
 ts          = require 'gulp-typescript'
 concat      = require 'gulp-concat'
 # less        = require 'gulp-less'
+sass        = require 'gulp-ruby-sass'
 # ngAnnotate  = require 'gulp-ng-annotate'
 nodemon     = require 'gulp-nodemon'
 uglify      = require 'gulp-uglify'
@@ -34,7 +36,7 @@ plumber     = require 'gulp-plumber'
 
 gulp.task 'default', ['clean'], ->
 #  gulp.start 'compile:lib', 'compile:coffee', 'compile:less', 'compile:static'
-  gulp.start 'compile:lib', 'compile:ts','compile:static'
+  gulp.start 'compile:lib', 'compile:ts', 'compile:sass', 'compile:static'
 
 gulp.task 'clean', (cb) ->
   del 'target/webapp/', cb
@@ -44,6 +46,7 @@ gulp.task 'watch', ->
   gulp.watch sources.ts,    ['compile:ts']
 #  gulp.watch sources.coffee, ['compile:coffee']
 #  gulp.watch sources.less,   ['compile:less']
+  gulp.watch sources.sas, ['compile:sass']
   gulp.watch sources.static, ['compile:static']
 
 
@@ -84,6 +87,13 @@ gulp.task 'compile:ts', ->
 #    .pipe less()
 #    .pipe concat 'app.css'
 #    .pipe gulp.dest 'target/webapp/'
+
+gulp.task 'compile:sass', ->
+  gulp.src sources.sass
+    .pipe plumber()
+    .pipe sass()
+    .pipe concat 'app.css'
+    .pipe gulp.dest 'target/webapp'
 
 gulp.task 'compile:static', ->
   gulp.src sources.static
