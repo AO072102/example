@@ -1,11 +1,21 @@
+ruby install (ruby2.1.2p95)
+ -> sass install
+
+python install (python2.7.9)
+Microsoft Visual Studio C++ 2012 for Windows Desktop
+(https://github.com/TooTallNate/node-gyp)
+ -> tsd install
+
 node.js install
-npm install
-git init
+ ->npm install
+
+(create github's new repository) or (git init)
 
 create .gitignore
 /build/
 /bower_components/
 /node_modules/
+.sass_cache
 
 npm init
  or
@@ -29,6 +39,14 @@ npm install gulp
 npm install coffee-script --save-dev
 
 npm install -g typescript
+npm install -g tsd
+
+tsd init
+tsd query jquery knockout --action install --resolve --save
+作成されたtypingsフォルダを*.tsと同じフォルダにコピー
+*.tsの型定義ファイル参照は、/// <reference path="typings/tsd.d.ts" />となる
+なぜか、相対パスはファイルが見つからない。/// <reference path="../../typings/tsd.d.ts" />
+
 
 npm install bower --save-dev
 npm install del --save-dev

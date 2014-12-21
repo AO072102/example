@@ -6,18 +6,7 @@
   <link rel="stylesheet" href="lib.css">
   <link rel="stylesheet" href="app.css">
   <script type="text/javascript" src="lib.js"></script>
-  <script>
-  $(function() {
-    // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
-    function AppViewModel() {
-      this.firstName = "Bert";
-      this.lastName = "Bertington";
-    }
-
-    // Activates knockout.js
-    ko.applyBindings(new AppViewModel());
-  });
-  </script>
+  <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
   <h1>Gulpのサンプル</h1>
@@ -27,10 +16,9 @@
     <div>ボックス3</div>
   </div>
   <div class="knockout">
-    <!-- This is a *view* - HTML markup that defines the appearance of your UI -->
-
-    <p>First name: <strong data-bind="text: firstName"></strong></p>
-    <p>Last name: <strong data-bind="text: lastName"></strong></p>
+<p>名前：<input data-bind="value: name, valueUpdate: 'afterkeydown'"></p>
+<p>年齢：<input data-bind="value: age, valueUpdate: 'afterkeydown'"></p>
+<p>あなたは <span data-bind="text: name"></span> さん、<span data-bind="text: age"></span> 歳 ですね！</p>
   </div>
 </body>
 </html>
