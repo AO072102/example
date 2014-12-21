@@ -8,6 +8,7 @@ sources =
   bower:  'bower.json'
 #  coffee: 'app/**/*.coffee'
 #  less:   'app/**/*.less'
+  ts:    'app/**/*.ts'
   static: 'public/**/*'
 
 libs =
@@ -23,22 +24,23 @@ bower       = require 'bower'
 del         = require 'del'
 gulp        = require 'gulp'
 coffee      = require 'gulp-coffee'
+ts          = require 'gulp-typescript'
 concat      = require 'gulp-concat'
 # less        = require 'gulp-less'
 # ngAnnotate  = require 'gulp-ng-annotate'
 nodemon     = require 'gulp-nodemon'
 uglify      = require 'gulp-uglify'
 
-
 gulp.task 'default', ['clean'], ->
 #  gulp.start 'compile:lib', 'compile:coffee', 'compile:less', 'compile:static'
-  gulp.start 'compile:lib', 'compile:static'
+  gulp.start 'compile:lib', 'compile:ts','compile:static'
 
 gulp.task 'clean', (cb) ->
   del 'target/webapp/', cb
 
 gulp.task 'watch', ->
   gulp.watch sources.bower,  ['compile:lib']
+  gulp.watch sources.ts,    ['compile:ts']
 #  gulp.watch sources.coffee, ['compile:coffee']
 #  gulp.watch sources.less,   ['compile:less']
   gulp.watch sources.static, ['compile:static']
@@ -55,19 +57,31 @@ gulp.task 'compile:lib', ->
     gulp.src libs.static.map (e) -> "bower_components/#{e}"
       .pipe gulp.dest 'target/webapp/'
 
-gulp.task 'compile:coffee', ->
-  gulp.src sources.coffee
-    .pipe coffee()
-    .pipe ngAnnotate()
+#gulp.task 'compile:coffee', ->
+#  gulp.src sources.coffee
+#    .pipe coffee()
+#    .pipe ngAnnotate()
+#    .pipe uglify()
+#    .pipe concat 'app.js'
+#    .pipe gulp.dest 'target/webapp/'
+
+tsProject = ts.createProject({
+  declarationFiles: true,
+  noExternalResolve: true
+});
+
+gulp.task 'compile:ts', ->
+  gulp.src sources.ts
+    .pipe ts(tsProject)
     .pipe uglify()
     .pipe concat 'app.js'
-    .pipe gulp.dest 'target/webapp/'
+    .pipe gulp.dest 'target/webapp'
 
-gulp.task 'compile:less', ->
-  gulp.src sources.less
-    .pipe less()
-    .pipe concat 'app.css'
-    .pipe gulp.dest 'target/webapp/'
+#gulp.task 'compile:less', ->
+#  gulp.src sources.less
+#    .pipe less()
+#    .pipe concat 'app.css'
+#    .pipe gulp.dest 'target/webapp/'
 
 gulp.task 'compile:static', ->
   gulp.src sources.static

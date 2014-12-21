@@ -38,6 +38,8 @@ npm install gulp-concat --save-dev
 (npm install gulp-ng-annotate --save-dev)
 npm install gulp-nodemon --save-dev
 npm install gulp-uglify --save-dev
+npm install gulp-typescript --save-dev
+
 
 gulp
 
