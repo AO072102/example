@@ -30,6 +30,7 @@ concat      = require 'gulp-concat'
 # ngAnnotate  = require 'gulp-ng-annotate'
 nodemon     = require 'gulp-nodemon'
 uglify      = require 'gulp-uglify'
+plumber     = require 'gulp-plumber'
 
 gulp.task 'default', ['clean'], ->
 #  gulp.start 'compile:lib', 'compile:coffee', 'compile:less', 'compile:static'
@@ -72,6 +73,7 @@ tsProject = ts.createProject({
 
 gulp.task 'compile:ts', ->
   gulp.src sources.ts
+    .pipe plumber()
     .pipe ts(tsProject)
     .pipe uglify()
     .pipe concat 'app.js'
